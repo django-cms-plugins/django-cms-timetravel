@@ -12,7 +12,7 @@ from cms_timetravel.utils import get_timetravel_date
 
 class TimetravelView(FormView):
     form_class = TimetravelForm
-    template_name = 'timetravel/admin/form.html'
+    template_name = 'cms_timetravel/admin/form.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
