@@ -7,6 +7,10 @@ from cms_timetravel.utils import get_timetravel_date
 
 
 def published(self, site=None):
+    """
+    Get all published items from Django CMS Pages and
+    filter them according to the actual Timetravel date.
+    """
     pub = self.on_site(site).filter(published=True)
     ref_date = get_timetravel_date()
 
@@ -27,10 +31,13 @@ def published(self, site=None):
 
 
 def expired(self):
+    """
+    Get all expired items from Django CMS Pages and
+    filter them according to the actual Timetravel date.
+    """
     ref_date = get_timetravel_date()
     logging.debug('Retrieving CMS Expired pages with date {0}'.format(ref_date))
-    return self.on_site().filter(
-        publication_end_date__lte=ref_date)
+    return self.on_site().filter(publication_end_date__lte=ref_date)
 
 PageQuerySet.published = published
 PageQuerySet.expired = expired
