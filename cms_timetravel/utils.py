@@ -23,8 +23,3 @@ def get_timetravel_date():
     timetravel_date = getattr(_thread_locals, 'timetravel_date', datetime.now())
     logging.debug('Getting timetravel date: {0}'.format(timetravel_date))
     return timetravel_date
-
-
-def get_reference_date(request):
-    # TODO: Deprecate
-    get_timetravel_date()
