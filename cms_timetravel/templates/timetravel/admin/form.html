@@ -1,0 +1,41 @@
+{% extends "admin/base_site.html" %}
+{% load admin_urls i18n %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/base.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/forms.css" />
+{% endblock %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url admin:jsi18n %}"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/core.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/getElementsBySelector.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/actions.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    {% if request.session.timetravel_date %}
+        {% url cms_timetravel.timetravel as timetravel_url %}
+        <p>
+            <em>{# 2013-02-18 11:25:53 #}
+                {% blocktrans %}The current timetravel date is: {{ timetravel_date }}{% endblocktrans %}
+            </em>
+            (<a href="{{ timetravel_url }}?clear" id="clear">{% trans "delete" %}</a>)
+        </p>
+    {% else %}
+        <p><em>{% trans "There is currently no time-traveling date set." %}</em></p>
+    {% endif %}
+
+    <p>{% trans "Please select a date and time in which you want to view the site." %}</p>
+
+    <form action="." method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Submit" %}" />
+    </form>
+{% endblock %}
