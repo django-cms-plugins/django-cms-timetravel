@@ -2,7 +2,6 @@ import logging
 from django.conf import settings
 from django.db.models import Q
 
-# from cms.models import Page
 from cms.models.query import PageQuerySet
 from cms_timetravel.utils import get_timetravel_date
 
