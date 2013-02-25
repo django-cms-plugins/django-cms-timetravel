@@ -3,3 +3,4 @@ include README.rst
 include LICENSE
 
 recursive-include cms_timetravel/locale *.po *.mo
+recursive-include cms_timetravel/templates *
