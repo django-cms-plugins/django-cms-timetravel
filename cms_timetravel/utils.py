@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from cms.utils import timezone
 
 try:
     from threading import local
@@ -22,6 +22,6 @@ def get_timetravel_date():
     """
     Provide the option to get the timetravel date within the application
     """
-    timetravel_date = getattr(_thread_locals, 'timetravel_date', datetime.now())
+    timetravel_date = getattr(_thread_locals, 'timetravel_date', timezone.now())
     logging.debug('Getting timetravel date: {0}'.format(timetravel_date))
     return timetravel_date

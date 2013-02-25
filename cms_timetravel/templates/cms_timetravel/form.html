@@ -33,9 +33,11 @@
 
     <p>{% trans "Please select a date and time in which you want to view the site." %}</p>
 
+    {% block form %}
     <form action="." method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="{% trans "Submit" %}" />
     </form>
+    {% endblock %}
 {% endblock %}

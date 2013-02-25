@@ -12,7 +12,7 @@ from cms_timetravel.utils import get_timetravel_date
 
 class TimetravelView(FormView):
     form_class = TimetravelForm
-    template_name = 'cms_timetravel/admin/form.html'
+    template_name = 'cms_timetravel/form.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -47,13 +47,12 @@ class TimetravelView(FormView):
     def get_success_url(self):
         if self.request.session.get('auto_redirect', False):
             return '/'
-        return reverse('timetravel')
+        return reverse('cms_timetravel:timetravel')
 
     def _clear(self):
         try:
             del self.request.session['timetravel_date']
-            del self.request.session['auto_redirect']
         except KeyError:
             logging.exception('Unable to throw away session keys for timetravelling.')
             pass
-        return HttpResponseRedirect(reverse('timetravel'))
+        return HttpResponseRedirect(reverse('cms_timetravel:timetravel'))

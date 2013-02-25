@@ -19,7 +19,10 @@ setup(
     version='0.0.1',
     license='Apache License, Version 2.0',
 
-    requires=[],  # TODO
+    requires=[
+        'Django>=1.4,<1.5',
+        'django-cms>=2.3.4',
+    ],
 
     description='Adds timetravelling functionality to Django CMS',
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
