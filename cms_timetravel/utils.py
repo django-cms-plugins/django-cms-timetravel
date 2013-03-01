@@ -1,6 +1,5 @@
 import logging
 from cms.utils import timezone
-#from cms.utils.permissions import _thread_locals
 
 try:
     from threading import local
