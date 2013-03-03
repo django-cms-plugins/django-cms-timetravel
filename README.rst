@@ -22,9 +22,11 @@ Configuration
 Add the following to your settings file:
 
     * Add ``cms_timetravel`` to ``INSTALLED_APPS``
+    * Add ``cms_timetravel.middleware.TimetravelMiddleware`` to ``MIDDLEWARE_CLASSES``::
 
         'cms.middleware.user.CurrentUserMiddleware',
         'cms.middleware.page.CurrentPageMiddleware',
+        'cms_timetravel.middleware.TimetravelMiddleware',
 
 
 URL Configuration

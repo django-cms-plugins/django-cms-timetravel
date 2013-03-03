@@ -40,7 +40,8 @@ class TimetravelView(FormView):
         return initial
 
     def form_valid(self, form):
-        set_timetravel_date(form.cleaned_data['timetravel_date'])
+        #set_timetravel_date(form.cleaned_data['timetravel_date'])
+        self.request.session['timetravel_date'] = form.cleaned_data['timetravel_date']
         self.request.session['auto_redirect'] = form.cleaned_data['auto_redirect']
         self.request.session.modified = True
         return super(TimetravelView, self).form_valid(form)
