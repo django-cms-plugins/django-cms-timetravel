@@ -1,4 +1,5 @@
 import logging
+
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -7,7 +8,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormView
 
 from cms_timetravel.forms import TimetravelForm
-from cms_timetravel.utils import get_timetravel_date, set_timetravel_date, reset_timetravel_date
+from cms_timetravel.utils import get_timetravel_date, reset_timetravel_date
 
 
 class TimetravelView(FormView):
@@ -27,10 +28,8 @@ class TimetravelView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(TimetravelView, self).get_context_data(**kwargs)
-        context.update({
-            'title': _('Timetravel'),
-            'timetravel_date': get_timetravel_date()
-        })
+        context['title'] = _('Timetravel')
+        context['timetravel_date'] = get_timetravel_date()
         return context
 
     def get_initial(self):
@@ -42,12 +41,11 @@ class TimetravelView(FormView):
     def form_valid(self, form):
         self.request.session['timetravel_date'] = form.cleaned_data['timetravel_date']
         self.request.session['auto_redirect'] = form.cleaned_data['auto_redirect']
-        self.request.session.modified = True
         return super(TimetravelView, self).form_valid(form)
 
     def get_success_url(self):
         if self.request.session.get('auto_redirect', False):
-            return '/'
+            return reverse('pages-root')  # CMS Root-page
         return reverse('cms_timetravel:timetravel')
 
     def _clear(self):

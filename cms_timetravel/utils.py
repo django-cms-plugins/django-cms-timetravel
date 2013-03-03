@@ -2,7 +2,6 @@ import logging
 from cms.utils import timezone
 from threading import local
 
-#_timetravel = None
 _thread_locals = local()
 
 
