@@ -28,7 +28,7 @@ setup(
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
 
     author='Janneke Janssen',
-    author_email='j.janssen@lukkien.com',
+    author_email='janneke.janssen@gmail.com',
 
     url='https://github.com/jjanssen/django-cms-timetravel',
     download_url='https://github.com/jjanssen/django-cms-timetravel/zipball/master',

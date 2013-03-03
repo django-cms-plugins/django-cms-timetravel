@@ -7,8 +7,9 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormView
 
+from cms.utils import timezone
 from cms_timetravel.forms import TimetravelForm
-from cms_timetravel.utils import get_timetravel_date, reset_timetravel_date
+from cms_timetravel.utils import reset_timetravel_date
 
 
 class TimetravelView(FormView):
@@ -29,12 +30,12 @@ class TimetravelView(FormView):
     def get_context_data(self, **kwargs):
         context = super(TimetravelView, self).get_context_data(**kwargs)
         context['title'] = _('Timetravel')
-        context['timetravel_date'] = get_timetravel_date()
+        context['timetravel_date'] = self.request.session.get('timetravel_date', None)
         return context
 
     def get_initial(self):
         initial = super(TimetravelView, self).get_initial()
-        initial['timetravel_date'] = get_timetravel_date()
+        initial['timetravel_date'] = self.request.session.get('timetravel_date', timezone.now())
         initial['auto_redirect'] = self.request.session.get('auto_redirect', True)
         return initial
 
