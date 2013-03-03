@@ -7,7 +7,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormView
 
 from cms_timetravel.forms import TimetravelForm
-from cms_timetravel.utils import get_timetravel_date
+from cms_timetravel.utils import get_timetravel_date, set_timetravel_date, reset_timetravel_date
 
 
 class TimetravelView(FormView):
@@ -40,8 +40,9 @@ class TimetravelView(FormView):
         return initial
 
     def form_valid(self, form):
-        self.request.session['timetravel_date'] = form.cleaned_data['timetravel_date']
+        set_timetravel_date(form.cleaned_data['timetravel_date'])
         self.request.session['auto_redirect'] = form.cleaned_data['auto_redirect']
+        self.request.session.modified = True
         return super(TimetravelView, self).form_valid(form)
 
     def get_success_url(self):
@@ -50,9 +51,5 @@ class TimetravelView(FormView):
         return reverse('cms_timetravel:timetravel')
 
     def _clear(self):
-        try:
-            del self.request.session['timetravel_date']
-        except KeyError:
-            logging.exception('Unable to throw away session keys for timetravelling.')
-            pass
+        reset_timetravel_date()
         return HttpResponseRedirect(reverse('cms_timetravel:timetravel'))
