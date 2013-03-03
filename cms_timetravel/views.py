@@ -40,7 +40,6 @@ class TimetravelView(FormView):
         return initial
 
     def form_valid(self, form):
-        #set_timetravel_date(form.cleaned_data['timetravel_date'])
         self.request.session['timetravel_date'] = form.cleaned_data['timetravel_date']
         self.request.session['auto_redirect'] = form.cleaned_data['auto_redirect']
         self.request.session.modified = True
@@ -52,5 +51,9 @@ class TimetravelView(FormView):
         return reverse('cms_timetravel:timetravel')
 
     def _clear(self):
-        reset_timetravel_date()
+        try:
+            del self.request.session['timetravel_date']
+            reset_timetravel_date()
+        except KeyError:
+            logging.debug("Unable to delete key for timetravelling.")
         return HttpResponseRedirect(reverse('cms_timetravel:timetravel'))
