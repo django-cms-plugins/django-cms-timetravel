@@ -23,6 +23,9 @@ setup(
         'Django>=1.4,<1.5',
         'django-cms>=2.3.4',
     ],
+    tests_require=[
+        'mock==1.0.1',
+    ],
 
     description='Adds timetravelling functionality to Django CMS',
     long_description=open(join(dirname(__file__), 'README.rst')).read(),

@@ -1,9 +1,7 @@
-from cms.utils import timezone
 from django.contrib.auth.models import User
-from django.test import TestCase
-#from django.test.client import Client
 from django.core.urlresolvers import reverse
-# from django.conf import settings
+from django.test import TestCase
+from cms.utils import timezone
 
 
 class TimetravelAdminTest(TestCase):
