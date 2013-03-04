@@ -11,9 +11,9 @@ Install django-cms-timetravel with pip::
 
     $ pip install -e http://github.com/jjanssen/django-cms-timetravel#egg=django-cms-timetravel
 
-or::
+.. or::
 
-    $ pip install django-cms-timetravel
+..     $ pip install django-cms-timetravel
 
 
 Configuration
