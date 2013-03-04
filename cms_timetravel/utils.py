@@ -23,5 +23,4 @@ def get_timetravel_date():
     Provide the option to get the timetravel date within the application
     """
     timetravel_date = getattr(_thread_locals, 'timetravel', timezone.now())
-    logging.debug('Getting timetravel date: {0}'.format(timetravel_date))
     return timetravel_date
