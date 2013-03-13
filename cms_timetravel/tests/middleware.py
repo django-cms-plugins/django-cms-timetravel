@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 
 from cms.utils import timezone
-from cms_timetravel.middleware import TimetravelMiddleware
-from cms_timetravel.utils import reset_timetravel_date, get_timetravel_date
+from ..middleware import TimetravelMiddleware
+from ..utils import reset_timetravel_date, get_timetravel_date
 
 
 class TimetravelMiddlewareTest(TestCase):

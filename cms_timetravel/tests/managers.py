@@ -3,7 +3,7 @@ from django.test.testcases import TestCase
 
 from cms.api import create_page
 from cms.models import Page
-from cms_timetravel.utils import set_timetravel_date
+from ..utils import set_timetravel_date
 
 
 class TimetravelPublishedManagerTest(TestCase):

@@ -1,1 +1,2 @@
-from cms_timetravel import managers
+from .managers import pages
+from .managers import plugins

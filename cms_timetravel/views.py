@@ -8,8 +8,8 @@ from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormView
 
 from cms.utils import timezone
-from cms_timetravel.forms import TimetravelForm
-from cms_timetravel.utils import reset_timetravel_date
+from .forms import TimetravelForm
+from .utils import reset_timetravel_date
 
 
 class TimetravelView(FormView):
