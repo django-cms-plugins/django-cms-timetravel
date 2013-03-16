@@ -1,3 +1,7 @@
+.. image::  https://travis-ci.org/jjanssen/django-cms-timetravel.png?branch=master
+    :target: http://travis-ci.org/jjanssen/django-cms-timetravel
+    :alt: build-status
+
 django-cms-timetravel
 =====================
 
