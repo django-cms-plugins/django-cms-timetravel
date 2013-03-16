@@ -16,12 +16,14 @@ if 'sdist' in sys.argv:
 
 setup(
     name='django-cms-timetravel',
-    version='1.0.1',
+    version='1.1.0',
     license='Apache License, Version 2.0',
 
-    requires=[
-        'Django>=1.4,<1.5',
+    install_requires=[
         'django-cms>=2.3.4',
+    ],
+    requires=[
+        'Django (>=1.4)',
     ],
     tests_require=[
         'mock==1.0.1',

@@ -1,11 +1,16 @@
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from cms.api import create_page
 from cms.utils import timezone
 
 
 class TimetravelAdminTest(TestCase):
     url = reverse('cms_timetravel:timetravel')
+
+    @classmethod
+    def setUpClass(self):
+        create_page('home', 'dummy.html', 'en-us', published=True)
 
     def setUp(self):
         self._create_superuser()
@@ -14,7 +19,7 @@ class TimetravelAdminTest(TestCase):
         User.objects.create_superuser('superuser', 'test@example.com', 'test')
 
     def _login(self):
-        self.client.login(username='superuser', password='test')
+        self.assertTrue(self.client.login(username='superuser', password='test'))
 
     def _get_timetravel_view(self):
         self._login()
@@ -62,9 +67,8 @@ class TimetravelAdminTest(TestCase):
             'timetravel_date_0': '2013-03-04',
             'timetravel_date_1': '14:05:00',
             'auto_redirect': True
-        })
-        # Normally a 200, but we have no CMS Pages so we espect a 404
-        self.assertRedirects(response, reverse('pages-root'), 302, 404)
+        }, follow=True)
+        self.assertRedirects(response, reverse('pages-root'), 302, 200)
 
         # Test redirect to timetravel view
         response_to_self = self.client.post(self.url, {

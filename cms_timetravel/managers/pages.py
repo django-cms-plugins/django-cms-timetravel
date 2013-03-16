@@ -1,4 +1,5 @@
 import logging
+import warnings
 from django.conf import settings
 from django.db.models import Q
 from cms.models.query import PageQuerySet
@@ -26,7 +27,10 @@ def published(self, site=None):
             Q(publication_end_date__isnull=True)
         )
 
-    logging.debug('Retrieving CMS Published pages with date {0}'.format(ref_date))
+    if settings.CMS_SHOW_START_DATE or settings.CMS_SHOW_END_DATE:
+        logging.debug('Retrieving CMS Published pages with date {0}'.format(ref_date))
+    else:
+        warnings.warn("You must 'CMS_SHOW_START_DATE' or 'CMS_SHOW_END_DATE' to True, otherwise there isn't much to timetravel on.")
     return pub
 
 

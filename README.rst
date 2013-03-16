@@ -14,7 +14,6 @@ Screenshot
 ----------
 
 .. figure:: https://github.com/jjanssen/django-cms-timetravel/raw/master/docs/images/timetravel.png
-   :alt: AnyUrlField, with external URL input.
 
 
 Installation
