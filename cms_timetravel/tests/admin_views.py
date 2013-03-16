@@ -8,11 +8,8 @@ from cms.utils import timezone
 class TimetravelAdminTest(TestCase):
     url = reverse('cms_timetravel:timetravel')
 
-    @classmethod
-    def setUpClass(self):
-        create_page('home', 'dummy.html', 'en-us', published=True)
-
     def setUp(self):
+        create_page('home', 'dummy.html', 'en-us', published=True, publication_date=timezone.datetime(2013, 1, 1))
         self._create_superuser()
 
     def _create_superuser(self):
@@ -67,7 +64,7 @@ class TimetravelAdminTest(TestCase):
             'timetravel_date_0': '2013-03-04',
             'timetravel_date_1': '14:05:00',
             'auto_redirect': True
-        }, follow=True)
+        })
         self.assertRedirects(response, reverse('pages-root'), 302, 200)
 
         # Test redirect to timetravel view

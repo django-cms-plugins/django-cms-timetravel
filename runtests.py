@@ -37,10 +37,10 @@ settings.configure(
         'django.contrib.sites',
         'django.contrib.admin',
         'cms_timetravel',
-        'cms_timetravel.tests.testapp',
         'mptt',
         'cms',
         'menus',
+        'cms_timetravel.tests.testapp',
     ),
     SITE_ID = 1,
     ROOT_URLCONF = 'cms_timetravel.tests.testapp.urls',
@@ -48,7 +48,7 @@ settings.configure(
     CMS_LANGUAGES = (('en-us', 'English'),),
     CMS_TEMPLATES = (('dummy.html', 'Dummy'),),
     CMS_SHOW_START_DATE = True,
-    CMS_SHOW_END_DATE = True
+    CMS_SHOW_END_DATE = True,
 )
 
 call_command('syncdb', verbosity=1, interactive=False)

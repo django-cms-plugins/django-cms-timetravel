@@ -1,3 +1,4 @@
+import logging
 from django.core.exceptions import ValidationError
 
 from cms.models import CMSPlugin
@@ -30,17 +31,18 @@ def render_plugin(self, context=None, placeholder=None, admin=False, processors=
 
 
 def published(self):
-        """
-        Checks if the plugin should be published, depending on the publication
-        start and/or end date (if available).
-        """
-        ref_date = get_timetravel_date()
-        instance, plugin = self.get_plugin_instance()
-        if isinstance(instance, Schedulable):
-            return (instance.publication_date is None or instance.publication_date < ref_date) and \
-                (instance.publication_end_date is None or instance.publication_end_date >= ref_date)
-        else:
-            return True
+    """
+    Checks if the plugin should be published, depending on the publication
+    start and/or end date (if available).
+    """
+    ref_date = get_timetravel_date()
+    instance, plugin = self.get_plugin_instance()
+    if isinstance(instance, Schedulable):
+        logging.debug("The current plugin instance is Schedulable.")
+        return (instance.publication_date is None or instance.publication_date < ref_date) and \
+            (instance.publication_end_date is None or instance.publication_end_date >= ref_date)
+    else:
+        return True
 
 CMSPlugin.published = published
 CMSPlugin.render_plugin = render_plugin
