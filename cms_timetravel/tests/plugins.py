@@ -9,7 +9,7 @@ from cms_timetravel.utils import set_timetravel_date
 class TimetravelPublishedManagerTest(TestCase):
 
     def setUp(self):
-        self._create_example()
+        #self._create_example()
         self.page_url = reverse('pages-root')
 
     def tearDown(self):
