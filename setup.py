@@ -52,5 +52,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Framework :: Django',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
-    ]
+    ],
+
+    test_suite = 'runtests',
 )

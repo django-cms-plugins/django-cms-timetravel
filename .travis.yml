@@ -9,7 +9,6 @@ install:
   - pip install -q -e . --use-mirrors
 script:
   - python setup.py test
-  - python runtests.py
 branches:
   only:
     - master
