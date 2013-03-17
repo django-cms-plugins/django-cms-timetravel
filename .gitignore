@@ -3,6 +3,8 @@
 *.mo
 *.db
 *.egg-info/
+*.egg
 .DS_Store
 .ropeproject
 dist/
+docs/_build/
