@@ -16,7 +16,7 @@ if 'sdist' in sys.argv:
 
 setup(
     name='django-cms-timetravel',
-    version='1.1.1',
+    version='1.1.2',
     license='Apache License, Version 2.0',
 
     install_requires=[
